@@ -22,7 +22,7 @@ void setup() {
 void loop() 
 {
 int dor = digitalRead(PIN);
-//Serial.println(dor);
+Serial.println(dor);
 }
 
 void countup() {
@@ -32,7 +32,7 @@ void countup() {
 
   // Initial display of 00:00 centered
   int position = (16 - 5) / 2;  // Center position for 5 characters (e.g., "00:00")
-  lcd.setCursor(position, 0);   // Set cursor to the calculated position
+  lcd.setCursor(position, 0);   // Set text to the calculated position
   lcd.print("00:00");
 
   while (digitalRead(PIN) == HIGH) {   // Wait for the button to be pressed
@@ -41,8 +41,8 @@ void countup() {
     seconds = (currentMillis / 1000) % 60;   // Get seconds (reset after 60 seconds)
     milliseconds = currentMillis % 1000;    // Get milliseconds
 
-    lcd.setCursor(position, 0);              // Set the cursor to the calculated position
-    lcd.print(seconds < 10 ? "0" : "");     // Display a leading zero for seconds if needed
+    lcd.setCursor(position, 0);              // Set the text to a certain place
+    lcd.print(seconds < 10 ? "0" : "");     
     lcd.print(seconds);                     // Print the seconds
     lcd.print(":");
     lcd.print(milliseconds / 10);            // Display milliseconds (10ms steps)
@@ -52,23 +52,23 @@ void countup() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("you got ");
-    lcd.print(seconds < 10 ? "0" : "");     // Display a leading zero for seconds if needed
+    lcd.print(seconds < 10 ? "0" : "");     
     lcd.print(seconds);                     // Print the seconds
     lcd.print(":");
-    lcd.print(milliseconds / 10); 
+    lcd.print(milliseconds / 10); //print the milliseconds
     if(seconds==0)
     {
       lcd.setCursor(0, 1);
-      lcd.print("that was fast"); 
+      lcd.print("that was fast"); //if the time is under one second
     }
     else if(seconds==1)
     {
       lcd.setCursor(0, 1);
-      lcd.print("that was ehhh"); 
+      lcd.print("that was ehhh"); //if the time is one second
     }
     else
     {
       lcd.setCursor(0, 1);
-      lcd.print("that was shit"); 
+      lcd.print("that was shit"); //if the time is over one second
     }
 }
