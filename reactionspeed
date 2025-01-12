@@ -56,19 +56,21 @@ void countup() {
     lcd.print(seconds);                     // Print the seconds
     lcd.print(":");
     lcd.print(milliseconds / 10); //print the milliseconds
-    if(seconds==0)
-    {
-      lcd.setCursor(0, 1);
-      lcd.print("that was fast"); //if the time is under one second
-    }
-    else if(seconds==1)
-    {
-      lcd.setCursor(0, 1);
-      lcd.print("that was ehhh"); //if the time is one second
-    }
-    else
-    {
-      lcd.setCursor(0, 1);
-      lcd.print("that was shit"); //if the time is over one second
-    }
+    switch(seconds)
+{
+  case 0:
+    lcd.setCursor(0, 1);
+    lcd.print("that was fast"); //if the time is under one second
+    break;
+
+  case 1:
+    lcd.setCursor(0, 1);
+    lcd.print("that was ehhh"); //if the time is one second
+    break;
+
+  default:  // 'default' is the correct keyword, not 'defalt'
+    lcd.setCursor(0, 1);
+    lcd.print("that was shit"); //if the time is over one second
+    break;
+}
 }
